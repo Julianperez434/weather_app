@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{%block title %}Board{% endblock%}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-5 mb-3">Messages</h1>
+
+        <form action="/board" method="post" class="mb-3">
+            <div class="container">
+                <div class="form-group">
+                    <label class="text-muted" for="textarea">Message:</label>
+                    <div class="input-group">
+                        <textarea name="text" id="textarea" class="form-control mb-3" style="height: 38px;"></textarea>
+                        <button type="submit" class="btn btn-primary" style="height: 38px; line-height: 1.5;">Send</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        {% if messages %}
+            <div class="table-responsive" id="board-table">
+                <table class="table table-striped table-hover text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Username</th>
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for message in messages %}
+                            <tr>
+                                <td>{{ message.username.capitalize() }}</td>
+                                <td>{{ message.text }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>No messages available.</p>
+        {% endif %}
+    </div>
+
+{% endblock %}

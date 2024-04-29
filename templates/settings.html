@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{%block title %}Settings{% endblock%}
+
+{% block body %}
+<!-- Form -->
+<div class="container p-5">
+    <h2>Change Password</h2>
+    <form action="/settings" method="post">
+
+        <div class="form-group mt-3">
+            <label class="text-muted mb-2" for="password">Current Password:</label>
+            <div class="input-group">
+                <input type="password" name="password" id="password" placeholder="******" class="form-control">
+                <span class="input-group-text"><i class="bi bi-key"></i></span>
+            </div>
+        </div>
+
+        <div class="form-group mt-3">
+            <label class="text-muted mb-2" for="new_password">New Password:</label>
+            <div class="input-group">
+                <input type="password" name="new_password" id="new_password" placeholder="******" class="form-control" min="8" max="128">
+                <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+            </div>
+        </div>
+
+        <!-- Alert -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == "danger"%}
+                        <i class="bi bi-x-circle text-danger"></i><small class="text-{{category}}"> {{message}}</small>
+                    {% elif category == "success" %}
+                        <i class="bi bi-check-circle text-success"></i><small class="text-{{category}}"> {{message}}</small>
+                    {% else %}
+                        <small class="text-{{category}}"> {{message}}</small>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="d-grid gap-3 text-center mt-3">
+            <input type="submit" value="Change Password" class="btn btn-primary btn-block">
+        </div>
+    </form>
+</div>
+{% endblock %}

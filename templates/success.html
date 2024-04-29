@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container-fluid bg-primary text-white my-5 p-5">
+    <h2><i class="h2 bi bi-cloud-drizzle"></i> Weather App</h2>
+    <h1 class="display-1">Registration Successfull</h1>
+    <p class="lead">You are going to be redirected to login page in <span id="counter">10</span> seconds</p>
+    <a class="text-white mt-3" href="/login">Login manually</a>
+</div>
+
+<script>
+    // Function to start countdown and redirect
+    function startRedirectCountdown() {
+        let counterElement = document.getElementById('counter');
+        let count = parseInt(counterElement.textContent);
+
+        let countdown = setInterval(function() {
+            count--;
+            counterElement.textContent = count;
+
+            if (count <= 0) {
+                clearInterval(countdown);
+                window.location.href = "/login";
+            }
+        }, 1000);
+    }
+
+    // Execute the countdown when the page is fully loaded
+    window.onload = function() {
+        startRedirectCountdown();
+    };
+</script>
+
+
+{% endblock %}

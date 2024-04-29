@@ -1,0 +1,59 @@
+.bounce {
+    animation: bounceAnimation 2s ease-in-out infinite alternate;
+    transition: transform 0.3s ease;
+}
+
+.bg-weather {
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 20px;
+}
+
+.cold {
+    background-color: #6699CC;
+}
+
+.cool {
+    background-color: #66CCCC;
+}
+
+.mild {
+    background-color: #99CC99;
+}
+
+.warm {
+    background-color: #FFCC66;
+}
+
+.hot {
+    background-color: #FF9966;
+}
+
+#remember {
+    cursor: pointer;
+}
+
+#search-bar {
+    width: 15rem;
+}
+
+#history-table {
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+#board-table {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+
+@keyframes bounceAnimation {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-10px);
+    }
+}

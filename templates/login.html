@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{%block title %}Login{% endblock%}
+
+{% block body %}
+<!-- Left side -->
+<div class="row">
+    <div class="col-md-6">
+        <!-- Logo -->
+        <div class="container mt-5 ps-3">
+            <h1 class="h2"><i class="bi bi-cloud-drizzle text-primary"></i> <span class="text-muted">Weather</span> <span class="h2 fw-bold">App</span></h1>
+        </div>
+
+        {% if logout %}
+            <div class="alert alert-success mt-3" role="alert">
+                {{ logout }}
+            </div>
+        {% endif %}
+
+
+        <!-- Form container -->
+        <div class="container {% if logout %}mt-0{% else %}mt-5{% endif %} p-5">
+
+            <!-- Form header -->
+            <h2>Log In</h2>
+            <p class="text-muted">Don't have an account? <a href="/register">Create now</a></p>
+
+            <!-- Form -->
+            <form action="/login" method="post">
+
+                <!-- Username field-->
+                <div class="form-group">
+                    <label class="text-muted mb-2" for="username">Username:</label>
+                    <div class="input-group">
+                        <input type="text" name="username" id="username" autocomplete="off" placeholder="Username" class="form-control">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    </div>
+                </div>
+
+                <!-- Password field -->
+                <div class="form-group mt-3">
+                    <label class="text-muted mb-2" for="password">Password:</label>
+                    <div class="input-group">
+                        <input type="password" name="password" id="password" placeholder="******" class="form-control">
+                        <span class="input-group-text"><i class="bi bi-key"></i></span>
+                    </div>
+                </div>
+
+                <!-- Alert -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == "danger"%}
+                                <i class="bi bi-x-circle text-danger"></i><small class="text-{{category}}"> {{message}}</small>
+                            {% elif category == "success" %}
+                                <i class="bi bi-check-circle text-success"></i><small class="text-{{category}}"> {{message}}</small>
+                            {% else %}
+                                <small class="text-{{category}}"> {{message}}</small>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <!-- Utility links -->
+                <div class="form-group mt-3">
+                    <input type="checkbox" id="remember" value="remember" name="remember">
+                    <label class="text-muted" for="remember">Remember me</label>
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-grid gap-3 text-center mt-3">
+                    <input type="submit" value="Sign In" class="btn btn-primary btn-block">
+                    <a href="/register" class="btn btn-outline-primary btn-block">Register</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Right side -->
+    <div class="col-md-6">
+        <div class="container bg-primary">
+            <div class="row" style="height:100vh">
+                <div class="col d-flex justify-content-center align-items-center flex-column text-white">
+                    <i class="h2 bi bi-cloud-drizzle text-white bounce"></i>
+                    <p>Nice to see you again!</p>
+                    <h3 class="h2">Welcome to Weather App</h3>
+                    <div class="mt-3">Discover the weather in any city worldwide with our app!</div>
+                    <div>Log in or register, it's free and easy to use.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

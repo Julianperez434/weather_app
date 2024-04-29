@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{%block title %}Register{% endblock%}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-6">
+        <!-- Logo -->
+        <div class="container mt-5 ps-3">
+            <h1 class="h2"><i class="bi bi-cloud-drizzle text-primary"></i> <span class="text-muted">Weather</span> <span class="h2 fw-bold">App</span></h1>
+        </div>
+
+        <!-- Form container -->
+        <div class="container p-5">
+            <!-- Form header -->
+            <h2>Register</h2>
+            <p class="text-muted">Already have an account? <a href="/login">Login Now</a></p>
+            <!-- Form -->
+            <form action="/register" method="post">
+                <!-- Form username -->
+                <div class="form-group">
+                    <label class="text-muted mb-2" for="username">Username:</label>
+                    <div class="input-group">
+                        <input type="text" name="username" id="username" autocomplete="off" placeholder="Username" class="form-control" min="3" max="30">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                    </div>
+                </div>
+                <!-- Form email -->
+                <div class="form-group mt-3">
+                    <label class="text-muted mb-2" for="email">Email:</label>
+                    <div class="input-group">
+                        <input type="email" name="email" id="email" autocomplete="off" placeholder="Email" class="form-control" min="5" max="254">
+                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                    </div>
+                </div>
+                <!-- Form password -->
+                <div class="form-group mt-3">
+                    <label class="text-muted mb-2" for="password">Password:</label>
+                    <div class="input-group">
+                        <input type="password" name="password" id="password" placeholder="******" class="form-control" min="8" max="128">
+                        <span class="input-group-text"><i class="bi bi-key"></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group mt-3">
+                    <label class="text-muted mb-2" for="confirm">Repeat Password:</label>
+                    <div class="input-group">
+                        <input type="password" name="confirm" id="confirm" placeholder="******" class="form-control">
+                        <span class="input-group-text"><i class="bi bi-key-fill"></i></span>
+                    </div>
+                </div>
+
+                <!-- Alert -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            {% if category == "danger"%}
+                                <i class="bi bi-x-circle text-danger"></i><small class="text-{{category}}"> {{message}}</small>
+                            {% elif category == "success" %}
+                                <i class="bi bi-check-circle text-success"></i><small class="text-{{category}}"> {{message}}</small>
+                            {% else %}
+                                <small class="text-{{category}}"> {{message}}</small>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <div class="d-grid gap-3 text-center mt-3">
+                    <input type="submit" value="Sign Up" class="btn btn-primary btn-block">
+                    <a href="/register" class="btn btn-outline-primary btn-block">Log In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Right side -->
+    <div class="col-md-6">
+        <div class="container bg-primary">
+            <div class="row" style="height:100vh">
+                <div class="col d-flex justify-content-center align-items-center flex-column text-white">
+                    <i class="h2 bi bi-cloud-drizzle text-white bounce"></i>
+                    <p>Nice to see you again!</p>
+                    <h3 class="h2">Welcome to Weather App</h3>
+                    <div class="mt-3">Discover the weather in any city worldwide with our app!</div>
+                    <div>Log in or register, it's free and easy to use.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
