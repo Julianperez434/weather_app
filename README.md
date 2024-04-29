@@ -1,9 +1,7 @@
 # WEATHER APP
-## Video Demo  <https://youtu.be/aqmGcvptQuA>
 
 # Table of Contents
 - [WEATHER APP](#weather-app)
-  - [Video Demo  https://youtu.be/aqmGcvptQuA](#video-demo--httpsyoutubeaqmgcvptqua)
 - [Table of Contents](#table-of-contents)
 - [Description](#description)
   - [Overview](#overview)
